@@ -1,0 +1,9 @@
+/* Example CSS for a hero section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    background-color: #f7fafc;
+  }
+  
