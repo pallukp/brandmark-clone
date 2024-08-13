@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Widget</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .weather-widget {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+        }
+
+        .weather-widget h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        #weather p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-widget">
+        <h2>Weather in Bengaluru</h2>
+        <div id="weather">
+            <p id="temperature"></p>
+            <p id="description"></p>
+            <p id="humidity"></p>
+            <p id="wind"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const apiKey = "YOUR_API_KEY"; // Replace with your OpenWeatherMap API key
+            const city = "Bengaluru";
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('temperature').textContent = `Temperature: ${data.main.temp}°C`;
+                    document.getElementById('description').textContent = `Description: ${data.weather[0].description}`;
+                    document.getElementById('humidity').textContent = `Humidity: ${data.main.humidity}%`;
+                    document.getElementById('wind').textContent = `Wind Speed: ${data.wind.speed} m/s`;
+                })
+                .catch(error => console.error('Error fetching weather data:', error));
+        });
+    </script>
+</body>
+</html>
